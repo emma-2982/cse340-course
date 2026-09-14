@@ -1,4 +1,4 @@
-import db from './db.js'
+import db from '../db.js'
 
 const getAllOrganizations = async () => {
     const query = `SELECT organization_id, name, description, contact_email, logo_filename 
@@ -8,4 +8,3 @@ const getAllOrganizations = async () => {
 }
 
 export { getAllOrganizations };
-    
