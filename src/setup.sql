@@ -17,7 +17,7 @@ VALUES
 
 CREATE TABLE service_projects (
   project_id SERIAL PRIMARY KEY,
-  organization_id INTEGER NOT NULL REFERENCES organization(organization_id),
+  organization_id INTEGER NOT NULL REFERENCES organization(organization_id),  
   title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   location VARCHAR(255) NOT NULL,
@@ -77,3 +77,12 @@ INSERT INTO project_category (project_id, category_id) VALUES
     (1, 2), 
     (2, 1),  
     (3, 3);  
+
+ALTER TABLE service_projects
+DROP CONSTRAINT service_projects_organization_id_fkey;
+
+ALTER TABLE service_projects
+ADD CONSTRAINT service_projects_organization_id_fkey
+FOREIGN KEY (organization_id)
+REFERENCES organization(organization_id)
+ON DELETE CASCADE;
