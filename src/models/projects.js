@@ -21,23 +21,69 @@ const getAllProjects = async () => {
 };
 
 const getProjectsByOrganizationId = async (organizationId) => {
-    const query = `
+  const query = `
         SELECT
-          project_id,
-          organization_id,
-          title,
-          description,
-          location,
-          date
+          service_projects.project_id,
+          service_projects.organization_id,
+          service_projects.title,
+          service_projects.description,
+          service_projects.location,
+          service_projects.date
         FROM service_projects
         WHERE organization_id = $1
         ORDER BY date;
       `;
 
-    const queryParams = [organizationId];
-    const result = await db.query(query, queryParams);
+  const queryParams = [organizationId];
+  const result = await db.query(query, queryParams);
 
-    return result.rows;
+  return result.rows;
 };
 
-export { getAllProjects, getProjectsByOrganizationId };
+const getUpcomingProjects = async (number_of_projects) => {
+  const query = `
+    SELECT
+      service_projects.project_id,
+      service_projects.title,
+      service_projects.description,
+      service_projects.date,
+      service_projects.location,
+      service_projects.organization_id,
+      organization.name AS organization_name
+    FROM service_projects AS service_projects
+    JOIN organization AS organization
+      ON service_projects.organization_id = organization.organization_id
+    WHERE service_projects.date >= CURRENT_DATE
+    ORDER BY service_projects.date ASC
+    LIMIT $1;
+  `;
+
+  const queryParams = [number_of_projects];
+  const result = await db.query(query, queryParams);
+
+  return result.rows;
+};
+
+const getProjectDetails = async (id) => {
+  const query = `
+    SELECT
+      service_projects.project_id,
+      service_projects.title,
+      service_projects.description,
+      service_projects.date,
+      service_projects.location,
+      service_projects.organization_id,
+      organization.name AS organization_name
+    FROM service_projects AS service_projects
+    JOIN organization AS organization
+      ON service_projects.organization_id = organization.organization_id
+    WHERE service_projects.project_id = $1;
+  `;
+
+  const queryParams = [id];
+  const result = await db.query(query, queryParams);
+
+  return result.rows[0];
+};
+
+export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails };
