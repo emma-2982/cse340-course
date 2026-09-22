@@ -7,9 +7,11 @@
         <h2>Service Projects Categories</h2>
 
         <ul>
-            <% categories.forEach(cat=> { %>
+            <% categories.forEach(category=> { %>
                 <li>
-                    <%= cat.name %>
+                    <a href="/category/<%= category.category_id %>">
+                        <%= category.name %>
+                    </a>
                 </li>
                 <% }) %>
         </ul>
