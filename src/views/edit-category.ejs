@@ -5,16 +5,16 @@
             <%= title %>
         </h1>
 
-        <form action="/new-category" method="POST">
+        <form action="/edit-category/<%= category.category_id %>" method="POST">
 
             <div class="form-group">
                 <label for="name">Category Name</label>
 
-                <input type="text" id="name" name="name" maxlength="150" required>
+                <input type="text" id="name" name="name" maxlength="150" value="<%= category.name %>" required>
             </div>
 
             <button type="submit">
-                Create Category
+                Update Category
             </button>
 
         </form>

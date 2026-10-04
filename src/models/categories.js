@@ -18,7 +18,7 @@ const getCategoryById = async (categoryId) => {
     const queryParams = [categoryId];
     const result = await db.query(query, queryParams);
 
-    return result.rows;
+    return result.rows[0];
 
 }
 
