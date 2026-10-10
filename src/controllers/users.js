@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { createUser,authenticateUser } from '../models/users.js';
+import { createUser,authenticateUser,getAllUsers } from '../models/users.js';
 
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
@@ -111,5 +111,22 @@ const showAdminDashboard = (req, res) => {
 };
 
 
+const showUsersPage = async (req, res) => {
+    try {
+        const users = await getAllUsers();
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, showDashboard, requireLogin, requireRole, showAdminDashboard};
+        res.render('users', {
+            title: 'Registered Users',
+            users: users
+        });
+    } catch (error) {
+        console.error('Error retrieving users:', error);
+
+        req.flash('error', 'Unable to retrieve registered users.');
+        res.redirect('/dashboard');
+    }
+};
+
+
+
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, showDashboard, requireLogin, requireRole, showAdminDashboard,showUsersPage};
