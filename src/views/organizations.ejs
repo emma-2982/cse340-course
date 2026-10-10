@@ -21,5 +21,12 @@
     <% if (isLoggedIn) { %>
         <p><a href="/dashboard">My Dashboard</a></p>
         <% } %>
+        <% if (user && user.role==='admin' ) { %>
+            <p>
+                <a href="/new-organization">
+                    Create Organization
+                </a>
+            </p>
+            <% } %>
     </main>
 <%- include('partials/footer') %>
