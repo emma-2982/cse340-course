@@ -29,4 +29,43 @@
 
     </main>
 
+    <section>
+        <h2>My Volunteer Projects</h2>
+    
+        <% if (volunteerProjects.length> 0) { %>
+            <ul>
+                <% volunteerProjects.forEach(project=> { %>
+                    <li>
+                        <h3>
+                            <a href="/project/<%= project.project_id %>">
+                                <%= project.title %>
+                            </a>
+                        </h3>
+    
+                        <p>
+                            Organization: <%= project.organization_name %>
+                        </p>
+    
+                        <p>Location: <%= project.location %>
+                        </p>
+    
+                        <p>
+                            Date:
+                            <%= new Date(project.date).toLocaleDateString() %>
+                        </p>
+    
+                        <form action="/project/<%= project.project_id %>/volunteer/remove" method="POST">
+                            <button type="submit">
+                                Remove Me
+                            </button>
+                        </form>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% } else { %>
+                <p>You have not signed up to volunteer for any projects yet.</p>
+                <% } %>
+    </section>
+
+
     <%- include('partials/footer') %>

@@ -104,4 +104,20 @@ INSERT INTO roles (role_name, role_description) VALUES
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE project_volunteers (
+    user_id INTEGER NOT NULL,
+    project_id INTEGER NOT NULL,
+    signup_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (user_id, project_id),
+
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (project_id)
+        REFERENCES service_projects(project_id)
+        ON DELETE CASCADE
+);
+
 

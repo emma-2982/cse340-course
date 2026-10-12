@@ -46,6 +46,30 @@
       </p>
     <% } %>
 
+    <% if (user) { %>
+        <form action="/project/<%= project.project_id %>/volunteer" method="POST">
+            <button type="submit">Volunteer for this Project</button>
+        </form>
+        <% } %>
+
+
+<% if (user) { %>
+    <% if (hasVolunteered) { %>
+        <form action="/project/<%= project.project_id %>/volunteer/remove" method="POST">
+            <button type="submit">
+                Remove My Volunteer Signup
+            </button>
+        </form>
+        <% } else { %>
+            <form action="/project/<%= project.project_id %>/volunteer" method="POST">
+                <button type="submit">
+                    Volunteer for this Project
+                </button>
+            </form>
+            <% } %>
+                <% } %>
+
+
 </main>
 
    
