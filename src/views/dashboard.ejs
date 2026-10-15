@@ -1,71 +1,118 @@
 <%- include('partials/header') %>
 
-    <main>
-        <h1>
-            <%= title %>
-        </h1>
-
-        <h2>Dashboard</h2>
-        <p>Name: <%= name %>
-        </p>
-        <p>Username: <%= email %>
-        </p>
-
-        <% if (role==='admin' ) { %>
-            
-            <li>
-                <a href="/new-organization">Add Organization</a>
-            </li>
-            <li>
-                <a href="/new-project">Add Project</a>
-            </li>
-            <li>
-                <a href="/new-category">Add Category</a>
-            </li>
-            <p>
-                <a href="/users">View Registered Users</a>
-            </p>
-            <% } %>
-
-    </main>
-
-    <section>
-        <h2>My Volunteer Projects</h2>
-    
-        <% if (volunteerProjects.length> 0) { %>
-            <ul>
-                <% volunteerProjects.forEach(project=> { %>
-                    <li>
-                        <h3>
-                            <a href="/project/<%= project.project_id %>">
-                                <%= project.title %>
-                            </a>
-                        </h3>
-    
-                        <p>
-                            Organization: <%= project.organization_name %>
-                        </p>
-    
-                        <p>Location: <%= project.location %>
-                        </p>
-    
-                        <p>
-                            Date:
-                            <%= new Date(project.date).toLocaleDateString() %>
-                        </p>
-    
-                        <form action="/project/<%= project.project_id %>/volunteer/remove" method="POST">
-                            <button type="submit">
-                                Remove Me
-                            </button>
-                        </form>
-                    </li>
-                    <% }); %>
-            </ul>
-            <% } else { %>
-                <p>You have not signed up to volunteer for any projects yet.</p>
-                <% } %>
+     <main class="dashboard-page">
+    <section class="dashboard-header">
+        <h1><%= title %></h1>
+        <p>Welcome to your Service Network dashboard.</p>
     </section>
+
+    <section class="profile-card">
+        <h2>My Account</h2>
+
+        <div class="profile-details">
+            <p><strong>Name:</strong> <%= name %></p>
+            <p><strong>Email:</strong> <%= email %></p>
+        </div>
+    </section>
+
+    <% if (role === 'admin') { %>
+        <section class="admin-panel">
+            <div class="section-heading">
+                <h2>Administration</h2>
+                <p>Manage organizations, projects, categories, and users.</p>
+            </div>
+
+            <div class="admin-grid">
+                <a class="admin-card" href="/new-organization">
+                    <span class="admin-icon">🏢</span>
+                    <span class="admin-card-title">Add Organization</span>
+                    <span class="admin-card-description">Register a new partner organization.</span>
+                </a>
+
+                <a class="admin-card" href="/new-project">
+                    <span class="admin-icon">🤝</span>
+                    <span class="admin-card-title">Add Project</span>
+                    <span class="admin-card-description">Create a new service opportunity.</span>
+                </a>
+
+                <a class="admin-card" href="/new-category">
+                    <span class="admin-icon">📂</span>
+                    <span class="admin-card-title">Add Category</span>
+                    <span class="admin-card-description">Organize projects into categories.</span>
+                </a>
+
+                <a class="admin-card" href="/users">
+                    <span class="admin-icon">👥</span>
+                    <span class="admin-card-title">Registered Users</span>
+                    <span class="admin-card-description">View registered members.</span>
+                </a>
+            </div>
+        </section>
+    <% } %>
+</main>
+
+<section class="volunteer-section">
+    <div class="volunteer-container">
+        <div class="section-heading">
+            <h2>My Volunteer Projects</h2>
+            <p>Track the service opportunities you have joined.</p>
+        </div>
+
+        <% if (volunteerProjects.length > 0) { %>
+            <ul class="volunteer-grid">
+                <% volunteerProjects.forEach(project => { %>
+                    <li class="volunteer-card">
+                        <div class="project-card-content">
+                            <span class="project-label">My Commitment</span>
+
+                            <h3>
+                                <a href="/project/<%= project.project_id %>">
+                                    <%= project.title %>
+                                </a>
+                            </h3>
+
+                            <div class="project-details">
+                                <p>
+                                    <strong>Organization</strong>
+                                    <span><%= project.organization_name %></span>
+                                </p>
+
+                                <p>
+                                    <strong>Location</strong>
+                                    <span><%= project.location %></span>
+                                </p>
+
+                                <p>
+                                    <strong>Date</strong>
+                                    <span><%= new Date(project.date).toLocaleDateString() %></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="project-card-actions">
+                            <a class="view-project-btn" href="/project/<%= project.project_id %>">
+                                View Project
+                            </a>
+
+                            <form action="/project/<%= project.project_id %>/volunteer/remove" method="POST">
+                                <button class="remove-volunteer-btn" type="submit">
+                                    Remove Me
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <div class="empty-volunteer-state">
+                <span class="empty-icon">🤝</span>
+                <h3>No volunteer projects yet</h3>
+                <p>You have not signed up for any projects. Explore available projects and find a way to serve your community.</p>
+                <a class="view-project-btn" href="/projects">Explore Projects</a>
+            </div>
+        <% } %>
+    </div>
+</section>
 
 
     <%- include('partials/footer') %>

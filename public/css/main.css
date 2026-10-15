@@ -56,6 +56,11 @@ nav ul {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
+    padding: 0 1rem;
+    padding-left: 1rem !important;
+        margin-left: auto !important;
+        gap: 0.75rem;
+    
 }
 
 nav a {
@@ -195,3 +200,476 @@ button:hover {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+/* Navigation menu */
+body > ul {
+    list-style: none;
+    margin: 0;
+    padding: 12px 24px;
+    background-color:#f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-radius: 8px;
+}
+
+/* Remove bullets and spacing from list items */
+body > ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation links */
+body > ul li a {
+    display: block;
+    color: light blue;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+body > ul li a:hover {
+    background-color: light gold;
+    color: light gold;
+}
+
+/* Keyboard accessibility */
+body > ul li a:focus-visible {
+    outline: 3px solid #facc15;
+    outline-offset: 3px;
+}
+
+/* Mobile navigation */
+@media (max-width: 600px) {
+    body > ul {
+        padding: 12px;
+        gap: 6px;
+    }
+
+    body > ul li a {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+/* =========================================
+   DASHBOARD PAGE
+========================================= */
+
+.dashboard-page,
+.volunteer-container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+}
+
+.dashboard-page {
+    padding: 40px 0 20px;
+}
+
+.dashboard-header {
+    margin-bottom: 30px;
+    padding: 32px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #14532d, #166534);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(20, 83, 45, 0.14);
+}
+
+.dashboard-header h1 {
+    margin: 0 0 10px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #e5f5e9;
+    line-height: 1.7;
+}
+
+/* Account profile */
+.profile-card {
+    margin-bottom: 36px;
+    padding: 26px;
+    background: #ffffff;
+    border: 1px solid #e1e8e2;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.profile-card h2,
+.section-heading h2 {
+    margin-top: 0;
+    color: #14532d;
+    font-size: 1.5rem;
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.profile-details p {
+    margin: 0;
+    padding: 15px;
+    background: #f5f8f5;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+.profile-details strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #4b5563;
+    font-size: 0.85rem;
+}
+
+/* Section headings */
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #647067;
+    line-height: 1.6;
+}
+
+/* Admin panel */
+.admin-panel {
+    margin-bottom: 40px;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.admin-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 190px;
+    padding: 22px;
+    color: #1f2937;
+    text-decoration: none;
+    background: #ffffff;
+    border: 1px solid #dce7dd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-4px);
+    border-color: #86b99a;
+    box-shadow: 0 10px 22px rgba(20, 83, 45, 0.1);
+}
+
+.admin-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 18px;
+    background: #eaf5ed;
+    border-radius: 12px;
+    font-size: 1.5rem;
+}
+
+.admin-card-title {
+    margin-bottom: 8px;
+    color: #14532d;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.admin-card-description {
+    color: #647067;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* =========================================
+   VOLUNTEER PROJECTS
+========================================= */
+
+.volunteer-section {
+    padding: 40px 0 60px;
+    background: #f4f7f4;
+}
+
+.volunteer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.volunteer-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e0e7e1;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.045);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.volunteer-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.project-label {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 6px 10px;
+    color: #166534;
+    background: #eaf5ed;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.volunteer-card h3 {
+    margin: 0 0 22px;
+    font-size: 1.2rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.volunteer-card h3 a {
+    color: #14532d;
+    text-decoration: none;
+}
+
+.volunteer-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.project-details {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.project-details p {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.project-details strong {
+    color: #4b5563;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.project-details span {
+    color: #26332a;
+    line-height: 1.5;
+}
+
+/* Project buttons */
+.project-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid #edf0ed;
+}
+
+.project-card-actions form {
+    margin: 0;
+}
+
+.view-project-btn,
+.remove-volunteer-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.view-project-btn {
+    color: #ffffff;
+    background: #166534;
+}
+
+.view-project-btn:hover {
+    background: #14532d;
+}
+
+.remove-volunteer-btn {
+    color: #b42318;
+    background: #ffffff;
+    border-color: #f0c8c5;
+}
+
+.remove-volunteer-btn:hover {
+    color: #ffffff;
+    background: #b42318;
+    border-color: #b42318;
+}
+
+/* Empty state */
+.empty-volunteer-state {
+    padding: 48px 24px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px dashed #b8cbbd;
+    border-radius: 14px;
+}
+
+.empty-icon {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 2.5rem;
+}
+
+.empty-volunteer-state h3 {
+    margin: 0 0 10px;
+    color: #14532d;
+}
+
+.empty-volunteer-state p {
+    max-width: 560px;
+    margin: 0 auto 22px;
+    color: #647067;
+    line-height: 1.7;
+}
+
+/* Keyboard accessibility */
+.admin-card:focus-visible,
+.view-project-btn:focus-visible,
+.remove-volunteer-btn:focus-visible,
+.volunteer-card a:focus-visible {
+    outline: 3px solid #d97706;
+    outline-offset: 4px;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+========================================= */
+
+@media (max-width: 1000px) {
+    .admin-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .volunteer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-page,
+    .volunteer-container {
+        width: 92%;
+    }
+
+    .dashboard-page {
+        padding-top: 24px;
+    }
+
+    .dashboard-header {
+        padding: 24px 20px;
+        border-radius: 12px;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .admin-grid,
+    .volunteer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-card {
+        min-height: auto;
+    }
+
+    .volunteer-section {
+        padding: 30px 0 40px;
+    }
+
+    .volunteer-card {
+        padding: 20px;
+    }
+
+    .project-card-actions {
+        align-items: stretch;
+    }
+
+    .project-card-actions form {
+        display: flex;
+    }
+
+    .project-card-actions .view-project-btn,
+    .project-card-actions .remove-volunteer-btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .admin-card,
+    .volunteer-card,
+    .view-project-btn,
+    .remove-volunteer-btn {
+        transition: none;
+    }
+
+    .admin-card:hover,
+    .volunteer-card:hover {
+        transform: none;
+    }
+}
+
+/
+
+    .category-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .category-submit-button,
+    .category-cancel-button {
+        width: 100%;
+        box-sizing: border-box;
+    }

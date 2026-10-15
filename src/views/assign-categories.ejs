@@ -1,29 +1,72 @@
 <%- include('partials/header') %>
-    <main>
-        <h1>
-            <%= projectDetails.title %>
-        </h1>
 
-        <h2>Assign Categories</h2>
-        <form action="/assign-categories/<%= projectId %>" method="POST">
+<main class="assign-categories-page">
+    <div class="assign-categories-header">
+        <span class="page-label">PROJECT MANAGEMENT</span>
 
-            <div class="form-group">
-                <% categories.forEach(category=> { %>
-                    <div>
-                        <input type="checkbox" id="category-<%= category.category_id %>" name="categoryIds"
-                            value="<%= category.category_id %>" <%=assignedCategories.some(ac=> ac.category_id ===
-                        category.category_id) ? 'checked' : '' %>
-                        />
-                        <label for="category-<%= category.category_id %>">
-                            <%= category.name %>
-                        </label>
-                    </div>
-                    <% }); %>
+        <h1><%= projectDetails.title %></h1>
+
+        <p>
+            Organize this project by selecting the categories that best describe it.
+        </p>
+    </div>
+
+    <section class="category-form-card">
+        <div class="category-form-heading">
+            <div>
+                <h2>Assign Categories</h2>
+                <p>Select one or more categories for this project.</p>
             </div>
+            <span class="category-icon" aria-hidden="true">📂</span>
+        </div>
 
-            <button type="submit">Update Categories</button>
-            
+        <form action="/assign-categories/<%= projectId %>" method="POST">
+            <fieldset class="category-fieldset">
+                <legend>Available Categories</legend>
 
+                <div class="category-options">
+                    <% categories.forEach(category => { %>
+                        <label
+                            class="category-option"
+                            for="category-<%= category.category_id %>"
+                        >
+                            <input
+                                type="checkbox"
+                                id="category-<%= category.category_id %>"
+                                name="categoryIds"
+                                value="<%= category.category_id %>"
+                                <%= assignedCategories.some(
+                                    ac => ac.category_id === category.category_id
+                                ) ? 'checked' : '' %>
+                            >
 
-    </main>
-    <%- include('partials/footer') %>
+                            <span class="custom-checkbox" aria-hidden="true"></span>
+
+                            <span class="category-name">
+                                <%= category.name %>
+                            </span>
+                        </label>
+                    <% }); %>
+                </div>
+            </fieldset>
+
+            <% if (categories.length === 0) { %>
+                <p class="no-categories-message">
+                    No categories are available yet. Create a category before assigning one to this project.
+                </p>
+            <% } else { %>
+                <div class="category-form-actions">
+                    <a class="category-cancel-button" href="/project/<%= projectId %>">
+                        Cancel
+                    </a>
+
+                    <button class="category-submit-button" type="submit">
+                        Update Categories
+                    </button>
+                </div>
+            <% } %>
+        </form>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
